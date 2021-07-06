@@ -25,4 +25,10 @@ export class AppComponent {
       console.log('Run in browser');
     }
   }
+
+  private _opened: boolean = false;
+
+  private _toggleSidebar() {
+    this._opened = !this._opened;
+  }
 }

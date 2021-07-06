@@ -1,1 +1,14 @@
-<router-outlet></router-outlet>
+<ng-sidebar-container>
+
+  <!-- A sidebar -->
+  <ng-sidebar [(opened)]="_opened" mode="slide" dock="true" dockedSize="40px">
+    <p>Sidebar contents</p>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content>
+    <button (click)="_toggleSidebar()">Toggle sidebar</button>
+    <router-outlet></router-outlet>
+  </div>
+
+</ng-sidebar-container>
