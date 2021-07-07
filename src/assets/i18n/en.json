@@ -8,5 +8,10 @@
         "TITLE": "Detail page !",
         "BACK_TO_HOME": "Back to Home"
     }
-  }
+  },
+  "Home": "Home",
+  "Dashboard": "Dashboard",
+  "Admin": "Admin",
+  "Inventory": "Inventory",
+  "Brand": "MSB"
 }

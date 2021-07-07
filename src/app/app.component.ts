@@ -26,7 +26,7 @@ export class AppComponent {
     }
   }
 
-  private _opened: boolean = false;
+  private _opened: boolean = true;
 
   private _toggleSidebar() {
     this._opened = !this._opened;
