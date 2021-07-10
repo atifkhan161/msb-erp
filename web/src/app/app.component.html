@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">{{ 'Brand' | translate }}</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+      aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarColor01">
+    </div>
+  </div>
+</nav>
+<ng-sidebar-container class="msb-container">
+
+  <!-- A sidebar -->
+  <ng-sidebar [(opened)]="_opened" mode="slide" [dock]="_docked" dockedSize="55px">
+    <div class="vertical-nav bg-white msb-sidebar" id="sidebar">
+      <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+          <a routerLink="/" class="nav-link font-italic bg-light">
+            <i class="fa fa-th-large mr-3 fa-fw"></i>
+            {{ 'Dashboard' | translate }}
+          </a>
+        </li>
+      </ul>
+
+      <p class="text-gray font-weight-bold text-uppercase px-3 small py-4 mb-0">{{ 'Admin' | translate }}</p>
+
+      <ul class="nav flex-column bg-white mb-0">
+        <li class="nav-item">
+          <a routerLink="/detail" class="nav-link font-italic bg-light">
+            <i class="fa fa-area-chart mr-3 fa-fw"></i>
+            {{ 'Inventory' | translate }}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-sidebar>
+
+  <!-- Page content -->
+  <div ng-sidebar-content>
+    <div class="msb-container">
+      <!-- <button type="button" class="btn btn-primary" (click)="_toggleSidebar()">{{ 'Brand' | translate }}</button> -->
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+
+</ng-sidebar-container>
