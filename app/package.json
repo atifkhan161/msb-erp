@@ -4,6 +4,8 @@
   "main": "main.js",
   "private": true,
   "dependencies": {
-    "@electron/remote": "1.0.4"
+    "@electron/remote": "1.0.4",
+    "sqlite3": "5.0.2",
+    "express": "4.17.1"
   }
 }

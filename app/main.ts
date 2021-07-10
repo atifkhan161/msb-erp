@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
 
+import Server from './server';
+
 // Initialize remote module
 require('@electron/remote/main').initialize();
 
@@ -25,13 +27,17 @@ function createWindow(): BrowserWindow {
       nodeIntegration: true,
       allowRunningInsecureContent: (serve) ? true : false,
       contextIsolation: false,  // false if you want to run 2e2 test with Spectron
-      enableRemoteModule : true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
+      enableRemoteModule: true // true if you want to run 2e2 test  with Spectron or use remote module in renderer context (ie. Angular)
     },
   });
-  
+
+  // Express server
+  Server.listen(8787, () => {
+    console.log('server started');
+  });
 
   if (serve) {
-    win.webContents.openDevTools();
+    // win.webContents.openDevTools();
     require('electron-reload')(__dirname, {
       electron: require(path.join(__dirname, '/../node_modules/electron'))
     });
@@ -41,7 +47,7 @@ function createWindow(): BrowserWindow {
     let pathIndex = './index.html';
 
     if (fs.existsSync(path.join(__dirname, '../dist/index.html'))) {
-       // Path when running electron in local folder
+      // Path when running electron in local folder
       pathIndex = '../dist/index.html';
     }
 
@@ -50,6 +56,7 @@ function createWindow(): BrowserWindow {
       protocol: 'file:',
       slashes: true
     }));
+
   }
 
   // Emitted when the window is closed.

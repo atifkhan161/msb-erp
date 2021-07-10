@@ -47,8 +47,10 @@
     "@electron/remote": "1.0.4",
     "bootstrap": "5.0.2",
     "bootswatch": "5.0.2",
+    "express": "4.17.1",
     "ng-sidebar": "9.4.2",
     "rxjs": "6.6.6",
+    "sqlite3": "5.0.2",
     "tslib": "2.1.0",
     "zone.js": "~0.11.4"
   },
@@ -64,6 +66,7 @@
     "@angular/compiler-cli": "12.0.5",
     "@ngx-translate/core": "13.0.0",
     "@ngx-translate/http-loader": "6.0.0",
+    "@types/express": "4.17.13",
     "@types/jasmine": "3.7.6",
     "@types/jasminewd2": "2.0.9",
     "@types/mocha": "8.2.2",
