@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { ProductComponent } from './product/product.component';
 import { UserService } from './service/user.service';
 
 @Injectable()
@@ -39,6 +41,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'dashboard', component: DashboardComponent },
       { path: 'inventory', component: InventoryComponent },
+      { path: 'product', component: ProductComponent },
+      { path: 'add-product', component: AddProductComponent },
     ]
   },
   {

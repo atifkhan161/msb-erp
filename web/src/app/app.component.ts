@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 
 import { APP_CONFIG } from '../environments/environment';
-import { UserService } from './service/user.service';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +11,6 @@ import { UserService } from './service/user.service';
 export class AppComponent {
   constructor(
     private translate: TranslateService,
-    private userService: UserService
   ) {
     this.translate.setDefaultLang('en');
     console.log('APP_CONFIG', APP_CONFIG);

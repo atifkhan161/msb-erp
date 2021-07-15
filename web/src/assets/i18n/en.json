@@ -1,17 +1,30 @@
 {
   "PAGES": {
-      "HOME": {
-          "TITLE": "App works !",
-          "GO_TO_DETAIL": "Go to Detail"
-      },
-      "DASHBOARD": {
-        "TITLE": "Dashboard page!",
-        "LOGOUT": "Log Out"
-    }
+    "HOME": {
+      "TITLE": "App works !",
+      "GO_TO_DETAIL": "Go to Detail"
+    },
+    "DASHBOARD": {
+      "TITLE": "Dashboard page!",
+      "LOGOUT": "Log Out"
+    },
+    "INVENTORY": {
+      "TITLE": "INVENTORY"
+    },
+    "Product": {
+      "TITLE": "Products",
+      "AddTitle": "Add a new Product"
+    },
+    "Add": "Add",
+    "Remove": "Remove"
   },
   "Home": "Home",
   "Dashboard": "Dashboard",
   "Admin": "Admin",
   "Inventory": "Inventory",
-  "Brand": "MSB"
+  "Brand": "MSB",
+  "Name": "Name",
+  "Name.Placeholder": "Enter Name",
+  "Submit": "Submit",
+  "Back": "Back"
 }

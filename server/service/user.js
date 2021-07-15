@@ -1,27 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const dbService = require("../db/db.service")();
+const DbService = require("../db/db.service");
+const sendError = require("./error-service");
 
-let response = {
-  status: 200,
-  data: [],
-  message: null
-};
-
-// Error handling
-const sendError = (err, res) => {
-  response.status = 501;
-  response.data = [];
-  response.message = typeof err == 'object' ? err.message : err;
-  res.status(501).json(response);
-};
-
-// Get movies
-router.post('/user/login', async (req, res) => {
+// Authenticate user
+router.post('/user/login', async (req, res, next) => {
+  let dbService = new DbService(next);
   const user = await dbService.getUser(req.body);
-  if (!user) {
-    sendError("Invalid Credentials!", res);
-  } else {
+  if (user) {
     res.send(user);
   }
 });

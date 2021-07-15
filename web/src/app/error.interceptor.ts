@@ -15,9 +15,10 @@ export class ErrorIntercept implements HttpInterceptor {
             // client-side error
             errorMessage = `Error: ${error.error.message}`;
             throwError(errorMessage)
-          } else {
+          } else if (error.error) {
             // server-side error
-            errorMessage = `Error Status: ${error.status}\nMessage: ${error.message}`;
+            errorMessage = `Error Status: ${error.error.status}\nMessage: ${error.error.message}`;
+            alert(errorMessage);
             // return Observable.empty<HttpEvent<any>>();
           }
           return throwError(errorMessage);

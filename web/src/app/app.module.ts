@@ -11,8 +11,12 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ErrorIntercept } from './error.interceptor';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { InventoryComponent } from './inventory/inventory.component';
+import { LoginComponent } from './login/login.component';
+import { AddProductComponent } from './product/add-product/add-product.component';
+import { ProductComponent } from './product/product.component';
+import { ProductService } from './service/product.service';
+
 // import { UserService } from './service/user.service';
 
 // AoT requires an exported function for factories
@@ -24,7 +28,9 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
     HomeComponent,
     DashboardComponent,
     LoginComponent,
-    InventoryComponent
+    InventoryComponent,
+    ProductComponent,
+    AddProductComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +52,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
       useClass: ErrorIntercept,
       multi: true
     },
+    ProductService,
     // UserService
   ],
   bootstrap: [AppComponent]

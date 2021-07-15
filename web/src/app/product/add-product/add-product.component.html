@@ -1,0 +1,21 @@
+<div class="container-fluid d-flex">
+  <div class="card border-primary m-3">
+    <div class="card-header">{{ 'PAGES.Product.AddTitle' | translate }}</div>
+    <div class="card-body">
+      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+        <fieldset>
+          <legend>{{ 'PAGES.Product.TITLE' | translate }}</legend>
+          <hr>
+          <div class="form-group">
+            <label for="exampleInputEmail1" class="form-label mt-4">{{"Name" | translate }}</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+              placeholder="{{'Name.Placeholder' | translate }}" formControlName="name">
+          </div>
+          <hr>
+          <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">{{"Submit" | translate }}</button>
+          <button type="button" class="btn btn-primary m-3">{{"Back" | translate }}</button>
+        </fieldset>
+      </form>
+    </div>
+  </div>
+</div>
