@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const DbService = require("../db/db.service");
+const DbService = require("./db.service");
 const sendError = require("./error-service");
 
 // Authenticate user

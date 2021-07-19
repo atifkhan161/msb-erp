@@ -9,10 +9,12 @@
       "LOGOUT": "Log Out"
     },
     "INVENTORY": {
-      "TITLE": "INVENTORY"
+      "TITLE": "Inventory"
     },
     "Product": {
       "TITLE": "Products",
+      "Id": "Product Id",
+      "Name": "Product Name",
       "AddTitle": "Add a new Product"
     },
     "Add": "Add",
@@ -26,5 +28,6 @@
   "Name": "Name",
   "Name.Placeholder": "Enter Name",
   "Submit": "Submit",
-  "Back": "Back"
+  "Back": "Back",
+  "Close": "Close"
 }

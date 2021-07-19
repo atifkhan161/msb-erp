@@ -14,4 +14,18 @@ export class ProductService {
     return this.http
       .post<Product>(this.configUrl, product);
   }
+
+  Edit(product: Product) {
+    return this.http
+      .put<Product>(this.configUrl, product);
+  }
+
+  Get() {
+    return this.http
+      .get<Product[]>(this.configUrl);
+  }
+
+  Delete(product: Product) {
+    return this.http.post<Product>(this.configUrl + "/delete", product);
+  }
 }

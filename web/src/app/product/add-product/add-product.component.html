@@ -1,21 +1,30 @@
-<div class="container-fluid d-flex">
-  <div class="card border-primary m-3">
-    <div class="card-header">{{ 'PAGES.Product.AddTitle' | translate }}</div>
-    <div class="card-body">
-      <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-        <fieldset>
-          <legend>{{ 'PAGES.Product.TITLE' | translate }}</legend>
-          <hr>
-          <div class="form-group">
-            <label for="exampleInputEmail1" class="form-label mt-4">{{"Name" | translate }}</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-              placeholder="{{'Name.Placeholder' | translate }}" formControlName="name">
-          </div>
-          <hr>
-          <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">{{"Submit" | translate }}</button>
-          <button type="button" class="btn btn-primary m-3">{{"Back" | translate }}</button>
-        </fieldset>
-      </form>
-    </div>
-  </div>
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'PAGES.Product.AddTitle' | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
 </div>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <fieldset *ngIf="isEditMode">
+      <label class="form-label" for="id">{{'PAGES.Product.Id' | translate}}</label>
+      <input class="form-control" id="id" type="text" formControlName="product_id">
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="exampleInputEmail1" class="form-label mt-4">{{"Name" | translate }}</label>
+        <input type="email" class="form-control" id="name" aria-describedby="emailHelp"
+          placeholder="{{'Name.Placeholder' | translate }}" formControlName="name">
+      </div>
+    </fieldset>
+    <fieldset *ngIf="isEditMode">
+      <label class="form-label" for="inventory">{{'Inventory' | translate}}</label>
+      <input class="form-control" id="inventory" type="text" formControlName="inventory">
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!productForm.valid">{{"Submit" | translate }}</button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
+  </div>
+</form>

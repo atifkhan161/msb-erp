@@ -16,11 +16,13 @@ import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ProductComponent } from './product/product.component';
 import { ProductService } from './service/product.service';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { allIcons, ColorTheme, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 
 // import { UserService } from './service/user.service';
 
 // AoT requires an exported function for factories
-const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new TranslateHttpLoader(http, './assets/i18n/', '.json');
+const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new TranslateHttpLoader(http, './assets/i18n/', '.json');
 
 @NgModule({
   declarations: [
@@ -45,13 +47,19 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader =>  new Transl
         deps: [HttpClient]
       }
     }),
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    NgbModule,
+    NgxBootstrapIconsModule.pick(allIcons, {
+      width: '2em',
+      height: '2em',
+      theme: ColorTheme.Primary,
+    }),
   ],
   providers: [{
-      provide: HTTP_INTERCEPTORS,
-      useClass: ErrorIntercept,
-      multi: true
-    },
+    provide: HTTP_INTERCEPTORS,
+    useClass: ErrorIntercept,
+    multi: true
+  },
     ProductService,
     // UserService
   ],

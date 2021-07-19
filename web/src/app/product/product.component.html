@@ -1,7 +1,34 @@
 <div class="container-fluid">
   <h1>{{ 'PAGES.Product.TITLE' | translate }}</h1>
   <hr>
-  <div class="d-flex flex-row">
-    <button type="button" class="btn btn-primary " routerLink="/home/add-product">{{'Add' | translate}}</button>
+  <div class="d-flex flex-row mb-3">
+    <button type="button" class="btn btn-primary" (click) = "addProduct()">
+      {{'Add' | translate}}
+    </button>
+  </div>
+  <div lass="d-flex flex-row" *ngIf="products">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">{{ 'PAGES.Product.Id' | translate}}</th>
+          <th scope="col">{{ 'PAGES.Product.Name' | translate}}</th>
+          <th scope="col">{{ 'Inventory' | translate}}</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <th scope="row">{{product.product_id}}</th>
+          <td>{{product.name}}</td>
+          <td>{{product.inventory}}</td>
+          <td>
+            <i-bs name="pencil-square" (click)="editProduct(product)">
+            </i-bs>
+            <i-bs name="trash" (click)="delete(product)" class="ml-3">
+            </i-bs>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>
