@@ -2,6 +2,8 @@ import { Injectable, NgModule } from '@angular/core';
 import { CanActivate, Router, RouterModule, Routes } from '@angular/router';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
+import { DealersComponent } from './dealers/dealers.component';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
@@ -42,7 +44,9 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
       { path: 'inventory', component: InventoryComponent },
       { path: 'product', component: ProductComponent },
+      { path: 'dealer', component: DealersComponent },
       { path: 'add-product', component: AddProductComponent },
+      { path: 'add-dealer', component: AddDealerComponent },
     ]
   },
   {

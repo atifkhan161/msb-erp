@@ -7,6 +7,7 @@ var methodOverride = require('method-override');
 // API files
 const user = require("./service/user");
 const product = require("./service/product");
+const dealer = require("./service/dealer");
 const clientErrorHandler =  require("./service/error-service");
 
 app.use(express.json());
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 // Api Endpoints
 app.use(user);
 app.use(product);
+app.use(dealer);
 
 app.use(methodOverride());
 app.use(clientErrorHandler);

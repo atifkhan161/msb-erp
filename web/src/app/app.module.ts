@@ -18,6 +18,8 @@ import { ProductComponent } from './product/product.component';
 import { ProductService } from './service/product.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { allIcons, ColorTheme, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
+import { DealersComponent } from './dealers/dealers.component';
+import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
 
 // import { UserService } from './service/user.service';
 
@@ -32,7 +34,9 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
     LoginComponent,
     InventoryComponent,
     ProductComponent,
-    AddProductComponent
+    AddProductComponent,
+    DealersComponent,
+    AddDealerComponent
   ],
   imports: [
     BrowserModule,

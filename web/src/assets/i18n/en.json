@@ -17,6 +17,12 @@
       "Name": "Product Name",
       "AddTitle": "Add a new Product"
     },
+    "Dealer": {
+      "TITLE": "Dealers",
+      "Id": "Dealer Id",
+      "Name": "Name",
+      "AddTitle": "Add a new Dealer"
+    },
     "Add": "Add",
     "Remove": "Remove"
   },
@@ -24,10 +30,16 @@
   "Dashboard": "Dashboard",
   "Admin": "Admin",
   "Inventory": "Inventory",
+  "Dealer": "Dealer",
   "Brand": "MSB",
   "Name": "Name",
   "Name.Placeholder": "Enter Name",
   "Submit": "Submit",
   "Back": "Back",
+  "Mobile": "Mobile Number",
+  "Mobile.Placeholder": "Ex. +91xxxxxxxxxx",
+  "Email": "Email Id",
+  "Email.Placeholder": "Ex. a@a.com",
+  "Notes": "Notes",
   "Close": "Close"
 }

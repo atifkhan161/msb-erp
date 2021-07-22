@@ -34,6 +34,12 @@
           </a>
         </li>
         <li class="nav-item">
+          <a routerLink="./dealer" class="nav-link font-italic bg-light">
+            <i-bs name="people"></i-bs>
+            {{ 'Dealer' | translate }}
+          </a>
+        </li>
+        <li class="nav-item">
           <a routerLink="./product" class="nav-link font-italic bg-light">
             <i-bs name="collection"></i-bs>
             {{ 'PAGES.Product.TITLE' | translate }}
@@ -45,8 +51,10 @@
 
   <!-- Page content -->
   <div ng-sidebar-content>
-    <div class="msb-container">
-      <router-outlet></router-outlet>
+    <div class="msb-container container-fluid">
+      <div class="row col-11">
+        <router-outlet></router-outlet>
+      </div>
     </div>
   </div>
 

@@ -1,0 +1,39 @@
+<div>
+
+    <h1>{{ 'PAGES.Dealer.TITLE' | translate }}</h1>
+    <hr>
+    <div class="d-flex flex-row mb-3">
+      <button type="button" class="btn btn-primary" (click)="addDealer()">
+        {{'Add' | translate}}
+      </button>
+    </div>
+    <div lass="d-flex flex-row" *ngIf="dealers">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">{{ 'PAGES.Dealer.Id' | translate}}</th>
+            <th scope="col">{{ 'PAGES.Dealer.Name' | translate}}</th>
+            <th scope="col">{{ 'Mobile' | translate}}</th>
+            <th scope="col">{{ 'Email' | translate}}</th>
+            <th scope="col">{{ 'Notes' | translate}}</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dealer of dealers">
+            <th scope="row">{{dealer.dealer_id}}</th>
+            <td>{{dealer.name}}</td>
+            <td>{{dealer.number}}</td>
+            <td>{{dealer.email}}</td>
+            <td class="col-overflow">{{dealer.notes}}</td>
+            <td>
+              <i-bs name="pencil-square" (click)="editDealer(dealer)">
+              </i-bs>
+              <i-bs name="trash" (click)="delete(dealer)" class="ml-3">
+              </i-bs>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+</div>
