@@ -2,24 +2,27 @@ import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { SidebarModule } from 'ng-sidebar';
+import { allIcons, ColorTheme, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
+import { DealersComponent } from './dealers/dealers.component';
 import { ErrorIntercept } from './error.interceptor';
 import { HomeComponent } from './home/home.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ProductComponent } from './product/product.component';
+import { DealerService } from './service/dealer.service';
 import { ProductService } from './service/product.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { allIcons, ColorTheme, NgxBootstrapIconsModule } from 'ngx-bootstrap-icons';
-import { DealersComponent } from './dealers/dealers.component';
-import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
+import { ToastsContainer } from './service/toast-container.component';
+import { ToastService } from './service/toast-service';
 
 // import { UserService } from './service/user.service';
 
@@ -36,6 +39,7 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
     ProductComponent,
     AddProductComponent,
     DealersComponent,
+    ToastsContainer,
     AddDealerComponent
   ],
   imports: [
@@ -62,9 +66,12 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: ErrorIntercept,
+    deps:[ToastService],
     multi: true
   },
     ProductService,
+    DealerService,
+    ToastService,
     // UserService
   ],
   bootstrap: [AppComponent]

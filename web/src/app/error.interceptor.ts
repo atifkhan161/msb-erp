@@ -1,8 +1,13 @@
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from "@angular/common/http";
 import { Observable, throwError } from "rxjs";
 import { catchError } from 'rxjs/operators';
+import { ToastService } from "./service/toast-service";
 
 export class ErrorIntercept implements HttpInterceptor {
+  constructor(
+    private toastService: ToastService,
+  ) { };
+
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
@@ -18,8 +23,7 @@ export class ErrorIntercept implements HttpInterceptor {
           } else if (error.error) {
             // server-side error
             errorMessage = `Error Status: ${error.error.status}\nMessage: ${error.error.message}`;
-            alert(errorMessage);
-            // return Observable.empty<HttpEvent<any>>();
+            this.toastService.danger(errorMessage);
           }
           return throwError(errorMessage);
         })

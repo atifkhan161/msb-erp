@@ -3,6 +3,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Product } from '../model/product.model';
 import { ProductService } from '../service/product.service';
+import { ToastService } from '../service/toast-service';
 import { AddProductComponent } from './add-product/add-product.component';
 
 @Component({
@@ -14,6 +15,7 @@ export class ProductComponent implements OnInit {
   products?: Product[];
   constructor(
     private service: ProductService,
+    private toastService: ToastService,
     private modalService: NgbModal
   ) { }
 
@@ -28,6 +30,7 @@ export class ProductComponent implements OnInit {
   }
   addProduct() {
     this.modalService.open(AddProductComponent).result.then(()=>{
+      this.toastService.success("Dealer added successfully");
       this.fetchList();
     });
   }
@@ -37,13 +40,14 @@ export class ProductComponent implements OnInit {
     modelRef.componentInstance.isEditMode = true;
     modelRef.componentInstance.product = item;
     modelRef.result.then(()=>{
+      this.toastService.info("Product updated.");
       this.fetchList();
     });
   }
 
   delete(item: Product) {
     this.service.Delete(item).subscribe((item) => {
-      alert("Item deleted successfully");
+      this.toastService.info("Product deleted successfully");
       this.fetchList();
     });
   }

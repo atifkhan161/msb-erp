@@ -9,19 +9,21 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
 import { ProductComponent } from './product/product.component';
+import { ToastService } from './service/toast-service';
 import { UserService } from './service/user.service';
 
 @Injectable()
 class OnlyLoggedInUsersGuard implements CanActivate {
   constructor(
     private userService: UserService,
+    private toastService: ToastService,
     private router: Router,) { };
 
   canActivate() {
     if (this.userService.isLoggedIn()) {
       return true;
     } else {
-      alert("You don't have permission to view this page");
+      this.toastService.warn("You don't have permission to view this page");
       this.router.navigate(["login"]);
       return false;
     }

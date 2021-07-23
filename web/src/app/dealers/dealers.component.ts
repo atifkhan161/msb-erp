@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { Dealer } from '../model/dealer.model';
-// import { AddDealerComponent } from '../product/add-product/add-product.component';
 import { DealerService } from '../service/dealer.service';
+import { ToastService } from '../service/toast-service';
 import { AddDealerComponent } from './add-dealer/add-dealer.component';
 
 @Component({
@@ -11,9 +12,10 @@ import { AddDealerComponent } from './add-dealer/add-dealer.component';
   styleUrls: ['./dealers.component.scss']
 })
 export class DealersComponent implements OnInit {
-dealers?: Dealer[];
+  dealers?: Dealer[];
   constructor(
     private service: DealerService,
+    private toastService: ToastService,
     private modalService: NgbModal
   ) { }
 
@@ -27,7 +29,8 @@ dealers?: Dealer[];
     });
   }
   addDealer() {
-    this.modalService.open(AddDealerComponent).result.then(()=>{
+    this.modalService.open(AddDealerComponent).result.then(() => {
+      this.toastService.success("Dealer added successfully");
       this.fetchList();
     });
   }
@@ -36,14 +39,15 @@ dealers?: Dealer[];
     let modelRef = this.modalService.open(AddDealerComponent);
     modelRef.componentInstance.isEditMode = true;
     modelRef.componentInstance.dealer = item;
-    modelRef.result.then(()=>{
+    modelRef.result.then(() => {
+      this.toastService.info("Dealer updated.");
       this.fetchList();
     });
   }
 
   delete(item: Dealer) {
     this.service.Delete(item).subscribe((item) => {
-      alert("Item deleted successfully");
+      this.toastService.info("Dealer deleted successfully");
       this.fetchList();
     });
   }

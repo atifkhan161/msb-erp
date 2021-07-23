@@ -3,12 +3,32 @@ const router = express.Router();
 const DbService = require("./db.service");
 const sendError = require("./error-service");
 
+class UserService {
+  constructor(next) {
+    this.next = next;
+    this.dbService = new DbService(next);
+  }
+
+  async authenticate(item) {
+    let query = "SELECT username FROM user WHERE username = @username and password = @password";
+    return this.dbService.get(query, {
+      username: item.username,
+      password: item.password
+    });
+  }
+}
 // Authenticate user
 router.post('/user/login', async (req, res, next) => {
-  let dbService = new DbService(next);
-  const user = await dbService.getUser(req.body);
+  let service = new UserService(next);
+  const user = await service.authenticate(req.body);
   if (user) {
     res.send(user);
+  } else {
+    res.status(501).json({
+      status: 501,
+      data: [],
+      message: "Invalid Credentials!"
+    });
   }
 });
 module.exports = router;

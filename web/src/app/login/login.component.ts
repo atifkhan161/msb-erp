@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
+
 import { UserService } from '../service/user.service';
 
 @Component({
@@ -11,7 +12,6 @@ import { UserService } from '../service/user.service';
 export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
   ) { }
@@ -44,9 +44,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["/home/dashboard"]);
       }, error => {
         this.loading = false;
-        alert(error);
       });
-
   }
 
 }

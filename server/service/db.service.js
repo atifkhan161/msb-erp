@@ -6,11 +6,6 @@ class DbService {
     this.db = new bSqlite('./db/app.db', { verbose: console.log });
   }
 
-  async getUser(req) {
-    let query = "SELECT username FROM user WHERE username = ? and password = ?";
-    return this.get(query, [req.username, req.password]);
-  }
-
   async run(query, params) {
     try {
       return this.prepare(query).run(params);
