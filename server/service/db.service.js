@@ -3,11 +3,15 @@ const bSqlite = require('better-sqlite3');
 class DbService {
   constructor(next) {
     this.next = next;
+  }
+
+  async openDB() {
     this.db = new bSqlite('./db/app.db', { verbose: console.log });
   }
 
   async run(query, params) {
     try {
+      await this.openDB();
       return this.prepare(query).run(params);
     } catch (err) {
       this.next(err);
@@ -18,6 +22,7 @@ class DbService {
 
   async get(query, params) {
     try {
+      await this.openDB();
       return this.prepare(query).get(params);
     } catch (err) {
       this.next(err);
@@ -28,6 +33,7 @@ class DbService {
 
   async all(query, params) {
     try {
+      await this.openDB();
       return params ? this.prepare(query).all(params) : this.prepare(query).all();
     } catch (err) {
       this.next(err);

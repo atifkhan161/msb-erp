@@ -23,6 +23,7 @@ import { DealerService } from './service/dealer.service';
 import { ProductService } from './service/product.service';
 import { ToastsContainer } from './service/toast-container.component';
 import { ToastService } from './service/toast-service';
+import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 
 // import { UserService } from './service/user.service';
 
@@ -40,7 +41,8 @@ const httpLoaderFactory = (http: HttpClient): TranslateHttpLoader => new Transla
     AddProductComponent,
     DealersComponent,
     ToastsContainer,
-    AddDealerComponent
+    AddDealerComponent,
+    AddInventoryComponent
   ],
   imports: [
     BrowserModule,

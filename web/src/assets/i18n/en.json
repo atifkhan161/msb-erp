@@ -9,7 +9,9 @@
       "LOGOUT": "Log Out"
     },
     "INVENTORY": {
-      "TITLE": "Inventory"
+      "TITLE": "Inventory",
+      "AddTitle": "Add New Inventory Item",
+      "Id": "Inventory Id"
     },
     "Product": {
       "TITLE": "Products",
@@ -26,20 +28,28 @@
     "Add": "Add",
     "Remove": "Remove"
   },
-  "Home": "Home",
-  "Dashboard": "Dashboard",
   "Admin": "Admin",
-  "Inventory": "Inventory",
-  "Dealer": "Dealer",
-  "Brand": "MSB",
-  "Name": "Name",
-  "Name.Placeholder": "Enter Name",
-  "Submit": "Submit",
   "Back": "Back",
-  "Mobile": "Mobile Number",
-  "Mobile.Placeholder": "Ex. +91xxxxxxxxxx",
+  "Brand": "MSB",
+  "Close": "Close",
+  "Count": "Count",
+  "Cost": "Cost",
+  "Dashboard": "Dashboard",
+  "Date": "Date",
+  "Dealer": "Dealer",
   "Email": "Email Id",
   "Email.Placeholder": "Ex. a@a.com",
+  "Home": "Home",
+  "Inventory": "Inventory",
+  "Mobile": "Mobile Number",
+  "Mobile.Placeholder": "Ex. +91xxxxxxxxxx",
+  "Name": "Name",
+  "Name.Placeholder": "Enter Name",
   "Notes": "Notes",
-  "Close": "Close"
+  "Paid": "Amount Paid",
+  "Product": "Product",
+  "Quantity": "Quantity",
+  "Submit": "Submit",
+  "Timestamp": "Time",
+  "Total": "Total Amount"
 }

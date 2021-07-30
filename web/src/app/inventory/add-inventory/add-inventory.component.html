@@ -1,0 +1,90 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'PAGES.INVENTORY.AddTitle' | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <fieldset>
+      <div class="form-group">
+        <label for="count" class="form-label mt-2">{{"Dealer" | translate }}</label>
+        <select formControlName="dealer_id" class="form-select">
+          <option disabled>Select Dealer</option>
+          <option *ngFor="let dealer of dealers" [ngValue]="dealer.dealer_id">{{dealer.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <div class="d-flex flex-row">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">{{ 'Product' | translate}}</th>
+                <th scope="col">{{ 'Quantity' | translate}}</th>
+                <th scope="col">{{ 'Cost' | translate}}</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container formArrayName="transactions">
+                <tr *ngFor="let transaction of transactions.controls; let i = index;" [formGroupName]="i">
+                  <th scope="row">
+                    <select formControlName="product_id" class="form-select">
+                      <option disabled>Select Product</option>
+                      <option *ngFor="let product of products" [ngValue]="product.product_id">{{product.name}}</option>
+                    </select>
+                  </th>
+                  <td>
+                    <input type="number" class="form-control" id="paid"
+                      placeholder="{{'Name.Placeholder' | translate }}" formControlName="quantity">
+                  </td>
+                  <td>
+                    <input type="number" class="form-control" id="paid"
+                      placeholder="{{'Name.Placeholder' | translate }}" formControlName="cost">
+                  </td>
+                  <td>
+                    <i-bs name="journal-plus" (click)="createItem(i)">
+                    </i-bs>
+                    <i-bs name="trash" class="ml-3" (click)="removeItem(i)">
+                    </i-bs>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="paid" class="form-label">{{"Paid" | translate }}</label>
+        <input type="number" class="form-control" id="paid" placeholder="{{'Name.Placeholder' | translate }}"
+          formControlName="paid">
+      </div>
+      <div class="form-group">
+        <label for="total" class="form-label">{{"Total" | translate }}</label>
+        <input type="number" class="form-control" id="total" formControlName="total">
+      </div>
+      <div class="d-flex">
+        <div class="form-group form-check-inline">
+          <label for="date" class="sr-only">{{"Date" | translate }}</label>
+          <div class="input-group">
+            <input class="form-control mr-2" placeholder="yyyy-mm-dd" id="date" name="date" formControlName="date"
+              ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append form-check-inline">
+              <i-bs name="calendar-date" width="1rem" (click)="d.toggle()" height="1rem">
+              </i-bs>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="time" class="sr-only">{{"Timestamp" | translate }}</label>
+          <ngb-timepicker id="time" formControlName="time" [meridian]="true"></ngb-timepicker>
+        </div>
+      </div>
+    </fieldset>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!inventoryForm.valid">{{"Submit" | translate }}</button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
+  </div>
+</form>

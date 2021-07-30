@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { AddDealerComponent } from './dealers/add-dealer/add-dealer.component';
 import { DealersComponent } from './dealers/dealers.component';
 import { HomeComponent } from './home/home.component';
+import { AddInventoryComponent } from './inventory/add-inventory/add-inventory.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './product/add-product/add-product.component';
@@ -49,6 +50,7 @@ const routes: Routes = [
       { path: 'dealer', component: DealersComponent },
       { path: 'add-product', component: AddProductComponent },
       { path: 'add-dealer', component: AddDealerComponent },
+      { path: 'add-inventory', component: AddInventoryComponent },
     ]
   },
   {

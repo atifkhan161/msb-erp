@@ -5,9 +5,10 @@ var cors = require("cors");
 var methodOverride = require('method-override');
 
 // API files
-const user = require("./service/user");
-const product = require("./service/product");
-const dealer = require("./service/dealer");
+const user = require("./controller/user");
+const product = require("./controller/product");
+const dealer = require("./controller/dealer");
+const inventory = require("./controller/inventory");
 const clientErrorHandler =  require("./service/error-service");
 
 app.use(express.json());
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(user);
 app.use(product);
 app.use(dealer);
+app.use(inventory);
 
 app.use(methodOverride());
 app.use(clientErrorHandler);

@@ -1,5 +1,5 @@
 // Create table
-create table dealers (
+create table dealer (
   dealer_id integer primary key autoincrement,
   name varchar(100) not null,
   number integer,

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const DbService = require("./db.service");
-const sendError = require("./error-service");
+const DbService = require("../service/db.service");
+const sendError = require("../service/error-service");
 
 class UserService {
   constructor(next) {

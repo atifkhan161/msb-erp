@@ -13,6 +13,7 @@
           <th scope="col">{{ 'PAGES.Product.Id' | translate}}</th>
           <th scope="col">{{ 'PAGES.Product.Name' | translate}}</th>
           <th scope="col">{{ 'Inventory' | translate}}</th>
+          <th scope="col">{{ 'LastModified' | translate}}</th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -21,6 +22,7 @@
           <th scope="row">{{product.product_id}}</th>
           <td>{{product.name}}</td>
           <td>{{product.inventory}}</td>
+          <td>{{product.timestamp | date:'medium'}}</td>
           <td>
             <i-bs name="pencil-square" (click)="editProduct(product)">
             </i-bs>

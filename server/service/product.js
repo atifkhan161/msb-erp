@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const DbService = require("./db.service");
 
 class ProductService {
@@ -23,6 +21,15 @@ class ProductService {
     });
   }
 
+  async updateProductCount(id, count, timestamp) {
+    let query = `UPDATE product SET inventory=@inventory, timestamp=@timestamp WHERE product_id=@product_id`;
+    return this.dbService.run(query, {
+      product_id: id,
+      inventory: count,
+      timestamp: timestamp
+    });
+  }
+
   async deleteProduct(item) {
     let query = "DELETE FROM product WHERE product_id = ?";
     return this.dbService.run(query, item.product_id);
@@ -32,39 +39,11 @@ class ProductService {
     let query = "SELECT * FROM product";
     return this.dbService.all(query, null);
   }
+
+  async getProductById(id) {
+    let query = "SELECT * FROM product WHERE product_id = ?";
+    return this.dbService.get(query, id);
+  }
 }
 
-// Get Product
-router.post('/product', async (req, res, next) => {
-  let service = new ProductService(next);
-  const info = await service.addProduct(req.body, next);
-  if (info) {
-    res.send(req.body);
-  }
-});
-
-router.get('/product', async (req, res, next) => {
-  let service = new ProductService(next);
-  const info = await service.getAllProduct();
-  if (info) {
-    res.send(info);
-  }
-});
-
-router.post('/product/delete', async (req, res, next) => {
-  let service = new ProductService(next);
-  const info = await service.deleteProduct(req.body);
-  if (info) {
-    res.send(info);
-  }
-});
-
-router.put('/product/', async (req, res, next) => {
-  let service = new ProductService(next);
-  const info = await service.editProduct(req.body);
-  if (info) {
-    res.send(info);
-  }
-});
-
-module.exports = router;
+module.exports = ProductService;
