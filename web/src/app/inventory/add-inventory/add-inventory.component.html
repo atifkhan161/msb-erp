@@ -83,7 +83,7 @@
     </fieldset>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" [disabled]="!inventoryForm.valid">{{"Submit" | translate }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isEditMode || !inventoryForm.valid">{{"Submit" | translate }}</button>
     <button type="button" class="btn btn-outline-dark"
       (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
   </div>
