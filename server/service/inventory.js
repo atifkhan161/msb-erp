@@ -1,5 +1,6 @@
 const DbService = require("./db.service");
 const ProductService = require("./product");
+const DealerService = require("./dealer");
 
 class InventoryService {
   constructor(next) {
@@ -9,6 +10,7 @@ class InventoryService {
 
   async add(item) {
     let productService = new ProductService(this.next);
+    let dealerService = new DealerService(this.next);
     let query = `INSERT INTO inventory (dealer_id, total, paid, timestamp)
                   VALUES (@dealer_id, @total, @paid, @timestamp)`;
     let inventory = await this.dbService.run(query, {
@@ -17,6 +19,13 @@ class InventoryService {
       paid: item.paid,
       timestamp: item.timestamp
     });
+    // Update dealer amount owed
+    let dealer = await dealerService.getDealerById(item.dealer_id);
+    if (dealer) {
+      let amount = dealer.amount;
+      amount += item.total - item.paid;
+      await dealerService.updateDealerAmount(item.dealer_id, amount, item.timestamp);
+    }
     if (inventory) {
       // Add entry into transac table
       for (const trasaction of item.transactions) {
@@ -44,7 +53,14 @@ class InventoryService {
 
   async delete(item) {
     let productService = new ProductService(this.next);
+    let dealerService = new DealerService(this.next);
     const transactions = await this.getTransaction(item.inventory_id);
+    let dealer = await dealerService.getDealerById(item.dealer_id);
+    if (dealer) {
+      let amount = dealer.amount;
+      amount -= item.total - item.paid;
+      await dealerService.updateDealerAmount(item.dealer_id, amount, item.timestamp);
+    }
     let tquery = "DELETE FROM transac WHERE inventory_id = ?";
     await this.dbService.run(tquery, item.inventory_id);
     let query = "DELETE FROM inventory WHERE inventory_id = ?";

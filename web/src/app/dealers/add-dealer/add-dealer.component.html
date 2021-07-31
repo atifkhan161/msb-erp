@@ -12,28 +12,34 @@
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label for="name" class="form-label mt-4">{{"Name" | translate }}</label>
+        <label for="name" class="form-label">{{"Name" | translate }}</label>
         <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
           placeholder="{{'Name.Placeholder' | translate }}" formControlName="name">
       </div>
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label for="number" class="form-label mt-4">{{"Mobile" | translate }}</label>
+        <label for="number" class="form-label">{{"Mobile" | translate }}</label>
         <input type="number" class="form-control" id="number" aria-describedby="emailHelp"
           placeholder="{{'Mobile.Placeholder' | translate }}" formControlName="number">
       </div>
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label for="email" class="form-label mt-4">{{"Email" | translate }}</label>
+        <label for="email" class="form-label">{{"Email" | translate }}</label>
         <input type="email" class="form-control" id="email" aria-describedby="emailHelp"
           placeholder="{{'Email.Placeholder' | translate }}" formControlName="email">
       </div>
     </fieldset>
     <fieldset>
       <div class="form-group">
-        <label for="notes" class="form-label mt-4">{{"Notes" | translate }}</label>
+        <label for="amount" class="form-label">{{"PayAmount" | translate }}</label>
+        <input type="number" class="form-control" id="amount" formControlName="amount">
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="notes" class="form-label">{{"Notes" | translate }}</label>
         <textarea class="form-control" id="notes" rows="3" spellcheck="false" formControlName="notes"></textarea>
       </div>
     </fieldset>

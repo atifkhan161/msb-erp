@@ -15,7 +15,9 @@
             <th scope="col">{{ 'PAGES.Dealer.Name' | translate}}</th>
             <th scope="col">{{ 'Mobile' | translate}}</th>
             <th scope="col">{{ 'Email' | translate}}</th>
+            <th scope="col">{{ 'PayAmount' | translate}}</th>
             <th scope="col">{{ 'Notes' | translate}}</th>
+            <th scope="col">{{ 'LastModified' | translate}}</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -25,7 +27,9 @@
             <td>{{dealer.name}}</td>
             <td>{{dealer.number}}</td>
             <td>{{dealer.email}}</td>
+            <td>{{dealer.amount}}</td>
             <td class="col-overflow">{{dealer.notes}}</td>
+            <td>{{dealer.timestamp | date:'medium'}}</td>
             <td>
               <i-bs name="pencil-square" (click)="editDealer(dealer)">
               </i-bs>

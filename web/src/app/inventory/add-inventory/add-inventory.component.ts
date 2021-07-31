@@ -83,7 +83,7 @@ export class AddInventoryComponent implements OnInit {
   }
   onSubmit() {
     const formVal: Inventory = this.inventoryForm.getRawValue();
-    formVal.timestamp = new Date(formVal.date.year, formVal.date.month,
+    formVal.timestamp = new Date(formVal.date.year, formVal.date.month - 1,
       formVal.date.day, formVal.time.hour, formVal.time.minute);
     if (this.isEditMode) {
       this.service.Edit(formVal).subscribe(data => {
@@ -114,7 +114,7 @@ export class AddInventoryComponent implements OnInit {
     let date = new Date(val);
     return {
       year: date.getUTCFullYear(),
-      month: date.getUTCMonth(),
+      month: date.getUTCMonth() + 1,
       day: date.getUTCDate()
     }
   }

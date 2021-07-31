@@ -29,6 +29,7 @@ export class AddDealerComponent implements OnInit {
       number: new FormControl(''),
       email: new FormControl(''),
       notes: new FormControl(''),
+      amount: new FormControl(0),
     });
     if (this.isEditMode) {
       this.dealerForm.patchValue(this.dealer);
