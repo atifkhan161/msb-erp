@@ -2,7 +2,7 @@ const DbService = require("./db.service");
 const ProductService = require("./product");
 const DealerService = require("./dealer");
 
-class InventoryService {
+class TradeService {
   constructor(next) {
     this.next = next;
     this.dbService = new DbService(next);
@@ -11,20 +11,19 @@ class InventoryService {
   async add(item) {
     let productService = new ProductService(this.next);
     let dealerService = new DealerService(this.next);
-    let query = `INSERT INTO trade (dealer_id, total, amount, timestamp, type)
-                  VALUES (@dealer_id, @total, @amount, @timestamp, @type)`;
+    let query = `INSERT INTO trade (dealer_id, total, amount, timestamp)
+                  VALUES (@dealer_id, @total, @amount, @timestamp)`;
     let trade = await this.dbService.run(query, {
       dealer_id: item.dealer_id,
       total: item.total,
       amount: item.amount,
-      timestamp: item.timestamp,
-      type: 'Buy'
+      timestamp: item.timestamp
     });
-    // Update dealer amount owed
+    // Update dealer amount
     let dealer = await dealerService.getDealerById(item.dealer_id);
     if (dealer) {
       let amount = dealer.amount;
-      amount -= item.total - item.amount;
+      amount += item.total - item.amount;
       await dealerService.updateDealerAmount(item.dealer_id, amount, item.timestamp);
     }
     if (trade) {
@@ -42,7 +41,7 @@ class InventoryService {
         // Update trade count in product page
         let product = await productService.getProductById(trasaction.product_id);
         if (product) {
-          let totalCount = product.inventory + trasaction.quantity;
+          let totalCount = product.inventory - trasaction.quantity;
           await productService.updateProductCount(trasaction.product_id, totalCount, item.timestamp);
         }
       }
@@ -59,7 +58,7 @@ class InventoryService {
     let dealer = await dealerService.getDealerById(item.dealer_id);
     if (dealer) {
       let amount = dealer.amount;
-      amount += item.total - item.amount;
+      amount -= item.total - item.amount;
       await dealerService.updateDealerAmount(item.dealer_id, amount, item.timestamp);
     }
     let tquery = "DELETE FROM transac WHERE trade_id = ?";
@@ -69,7 +68,7 @@ class InventoryService {
     for (const trasaction of transactions) {
       let product = await productService.getProductById(trasaction.product_id);
       if (product) {
-        let totalCount = product.inventory - trasaction.quantity;
+        let totalCount = product.inventory + trasaction.quantity;
         await productService.updateProductCount(trasaction.product_id, totalCount, Date.now());
       }
     }
@@ -81,7 +80,7 @@ class InventoryService {
                   trade.amount, trade.total, trade.timestamp
                   FROM trade 
                   LEFT JOIN dealer ON trade.dealer_id = dealer.dealer_id
-                  WHERE trade.type = 'Buy' 
+                  WHERE trade.type = 'Sell' 
                   ORDER BY trade.timestamp DESC`;
     return this.dbService.all(query, null);
   }
@@ -96,4 +95,4 @@ class InventoryService {
   }
 }
 
-module.exports = InventoryService;
+module.exports = TradeService;

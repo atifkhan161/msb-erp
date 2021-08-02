@@ -1,10 +1,10 @@
 <div class="modal-header">
-  <h4 class="modal-title">{{ 'PAGES.INVENTORY.AddTitle' | translate }}</h4>
+  <h4 class="modal-title">{{ 'Trade' | translate }}</h4>
   <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
-<form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+<form [formGroup]="tradeForm" (ngSubmit)="onSubmit()">
   <div class="modal-body">
     <fieldset>
       <div class="form-group">
@@ -35,12 +35,10 @@
                     </select>
                   </th>
                   <td>
-                    <input type="number" class="form-control" id="paid"
-                      placeholder="{{'Name.Placeholder' | translate }}" formControlName="quantity">
+                    <input type="number" class="form-control" id="paid" formControlName="quantity">
                   </td>
                   <td>
-                    <input type="number" class="form-control" id="paid"
-                      placeholder="{{'Name.Placeholder' | translate }}" formControlName="cost">
+                    <input type="number" class="form-control" id="received" formControlName="cost">
                   </td>
                   <td>
                     <i-bs name="journal-plus" (click)="createItem(i)">
@@ -55,7 +53,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label for="paid" class="form-label">{{"Paid" | translate }}</label>
+        <label for="paid" class="form-label">{{"Received" | translate }}</label>
         <input type="number" class="form-control" id="paid" formControlName="amount">
       </div>
       <div class="form-group">
@@ -82,7 +80,7 @@
     </fieldset>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" [disabled]="isEditMode || !inventoryForm.valid">{{"Submit" | translate }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="isEditMode || !tradeForm.valid">{{"Submit" | translate }}</button>
     <button type="button" class="btn btn-outline-dark"
       (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
   </div>

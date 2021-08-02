@@ -1,32 +1,32 @@
 <div>
-  <h1>{{ 'PAGES.INVENTORY.TITLE' | translate }}</h1>
+  <h1>{{ 'TradeTransaction' | translate }}</h1>
   <hr>
   <div class="d-flex flex-row mb-3">
-    <button type="button" class="btn btn-primary" (click) = "addInventory()">
+    <button type="button" class="btn btn-primary" (click) = "add()">
       {{'Add' | translate}}
     </button>
   </div>
-  <div class="d-flex flex-row" *ngIf="inventories">
+  <div class="d-flex flex-row" *ngIf="tradeList">
     <table class="table table-hover">
       <thead>
         <tr>
-          <th scope="col">{{ 'PAGES.INVENTORY.Id' | translate}}</th>
+          <th scope="col">{{ 'Id' | translate}}</th>
           <th scope="col">{{ 'Dealer' | translate}}</th>
-          <th scope="col">{{ 'Paid' | translate}}</th>
+          <th scope="col">{{ 'Received' | translate}}</th>
           <th scope="col">{{ 'Total' | translate}}</th>
           <th scope="col">{{ 'LastModified' | translate}}</th>
           <th scope="col"></th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of inventories">
+        <tr *ngFor="let item of tradeList">
           <th scope="row">{{item.trade_id}}</th>
           <td>{{item.Dealer_Name}}</td>
           <td>{{item.amount}}</td>
           <td>{{item.total}}</td>
           <td>{{item.timestamp | date:'medium'}}</td>
           <td>
-            <i-bs name="cart-check" (click)="editInventory(item)">
+            <i-bs name="cart-check" (click)="edit(item)">
             </i-bs>
             <i-bs name="trash" (click)="delete(item)" class="ml-3">
             </i-bs>

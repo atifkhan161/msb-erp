@@ -9,6 +9,7 @@ const user = require("./controller/user");
 const product = require("./controller/product");
 const dealer = require("./controller/dealer");
 const inventory = require("./controller/inventory");
+const trade = require("./controller/trade");
 const clientErrorHandler =  require("./service/error-service");
 
 app.use(express.json());
@@ -21,6 +22,7 @@ app.use(user);
 app.use(product);
 app.use(dealer);
 app.use(inventory);
+app.use(trade);
 
 app.use(methodOverride());
 app.use(clientErrorHandler);

@@ -2,19 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { Trade } from '../model/trade.model';
-import { InventoryService } from '../service/inventory-service';
 import { ToastService } from '../service/toast-service';
-import { AddInventoryComponent } from './add-inventory/add-inventory.component';
+import { TradeService } from '../service/trade-service';
+import { AddTradeComponent } from './add-trade/add-trade.component';
 
 @Component({
-  selector: 'app-inventory',
-  templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.scss']
+  selector: 'app-trade',
+  templateUrl: './trade.component.html',
+  styleUrls: ['./trade.component.scss']
 })
-export class InventoryComponent implements OnInit {
-  inventories?: Trade[];
+export class TradeComponent implements OnInit {
+  tradeList?: Trade[];
   constructor(
-    private service: InventoryService,
+    private service: TradeService,
     private toastService: ToastService,
     private modalService: NgbModal
   ) { }
@@ -25,25 +25,25 @@ export class InventoryComponent implements OnInit {
 
   fetchList() {
     this.service.Get().subscribe(list => {
-      this.inventories = list;
+      this.tradeList = list;
     });
   }
 
-  addInventory() {
-    this.modalService.open(AddInventoryComponent, { size: 'lg' }).result.then(() => {
-      this.toastService.success("Inventory added successfully");
+  add() {
+    this.modalService.open(AddTradeComponent, { size: 'lg' }).result.then(() => {
+      this.toastService.success("Dealing added successfully");
       this.fetchList();
     });
   }
 
-  editInventory(item: Trade) {
+  edit(item: Trade) {
     this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
       item.transactions = transactions;
-      let modelRef = this.modalService.open(AddInventoryComponent, { size: 'lg' });
+      let modelRef = this.modalService.open(AddTradeComponent, { size: 'lg' });
       modelRef.componentInstance.isEditMode = true;
       modelRef.componentInstance.inventory = item;
       modelRef.result.then(() => {
-        this.toastService.info("Inventory updated.");
+        this.toastService.info("Dealing updated.");
         this.fetchList();
       });
     });
@@ -51,7 +51,7 @@ export class InventoryComponent implements OnInit {
 
   delete(item: Trade) {
     this.service.Delete(item).subscribe(() => {
-      this.toastService.info("Inventory deleted successfully");
+      this.toastService.info("Dealing deleted successfully");
       this.fetchList();
     });
   }

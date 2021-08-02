@@ -6,32 +6,32 @@ import { Dealer } from 'src/app/model/dealer.model';
 import { Product } from 'src/app/model/product.model';
 import { Trade } from 'src/app/model/trade.model';
 import { DealerService } from 'src/app/service/dealer.service';
-import { InventoryService } from 'src/app/service/inventory-service';
 import { ProductService } from 'src/app/service/product.service';
+import { TradeService } from 'src/app/service/trade-service';
 
 @Component({
-  selector: 'app-add-inventory',
-  templateUrl: './add-inventory.component.html',
-  styleUrls: ['./add-inventory.component.scss']
+  selector: 'app-add-trade',
+  templateUrl: './add-trade.component.html',
+  styleUrls: ['./add-trade.component.scss']
 })
-export class AddInventoryComponent implements OnInit {
-  inventoryForm!: FormGroup;
+export class AddTradeComponent implements OnInit {
+  tradeForm!: FormGroup;
   isEditMode: boolean = false;
-  inventory!: Trade;
+  trade!: Trade;
   products?: Product[];
   dealers?: Dealer[];
   transactions = new FormArray([]);
 
   constructor(
-    private service: InventoryService,
+    private service: TradeService,
     private dealerService: DealerService,
     private productService: ProductService,
     public activeModal: NgbActiveModal,
   ) { }
 
   ngOnInit(): void {
-    this.inventoryForm = new FormGroup({
-      inventory_id: new FormControl(
+    this.tradeForm = new FormGroup({
+      trade_id: new FormControl(
         {
           value: '',
           disabled: true
@@ -44,15 +44,15 @@ export class AddInventoryComponent implements OnInit {
       transactions: this.transactions
     });
     if (this.isEditMode) {
-      this.inventoryForm.patchValue(this.inventory);
-      for (let transaction of this.inventory.transactions) {
+      this.tradeForm.patchValue(this.trade);
+      for (let transaction of this.trade.transactions) {
         this.transactions.push(new FormGroup({
           product_id: new FormControl(transaction.product_id, Validators.required),
           quantity: new FormControl(transaction.quantity),
           cost: new FormControl(transaction.cost)
         }));
       }
-      this.inventoryForm.updateValueAndValidity();
+      this.tradeForm.updateValueAndValidity();
 
     } else {
       this.createItem(0);
@@ -74,15 +74,15 @@ export class AddInventoryComponent implements OnInit {
         let total = 0;
         for (let transaction of formValue) {
           total += transaction.cost;
-          this.inventoryForm.patchValue({
+          this.tradeForm.patchValue({
             total: total
           });
-          this.inventoryForm.updateValueAndValidity();
+          this.tradeForm.updateValueAndValidity();
         }
       });
   }
   onSubmit() {
-    const formVal: Trade = this.inventoryForm.getRawValue();
+    const formVal: Trade = this.tradeForm.getRawValue();
     formVal.timestamp = new Date(formVal.date.year, formVal.date.month - 1,
       formVal.date.day, formVal.time.hour, formVal.time.minute);
     if (this.isEditMode) {
@@ -102,12 +102,12 @@ export class AddInventoryComponent implements OnInit {
       quantity: new FormControl(0),
       cost: new FormControl(0)
     }));
-    this.inventoryForm.updateValueAndValidity();
+    this.tradeForm.updateValueAndValidity();
   }
 
   removeItem(index: number) {
     this.transactions.removeAt(index);
-    this.inventoryForm.updateValueAndValidity();
+    this.tradeForm.updateValueAndValidity();
   }
 
   getDateStruct(val: number): NgbDateStruct {

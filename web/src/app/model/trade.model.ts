@@ -3,15 +3,15 @@ export interface Transaction {
   quantity: number;
   cost: number;
   product_id: number;
-  inventory_id?: number;
+  trade_id?: number;
   timestamp?: Date;
 }
 
-export interface Inventory {
-  inventory_id?: number;
+export interface Trade {
+  trade_id?: number;
   dealer_id: number;
   total: number;
-  paid: number;
+  amount: number;
   Dealer_Name?: string;
   timestamp?: Date;
   transactions: Transaction[];

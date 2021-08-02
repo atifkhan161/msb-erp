@@ -12,6 +12,7 @@ import { AddProductComponent } from './product/add-product/add-product.component
 import { ProductComponent } from './product/product.component';
 import { ToastService } from './service/toast-service';
 import { UserService } from './service/user.service';
+import { TradeComponent } from './trade/trade.component';
 
 @Injectable()
 class OnlyLoggedInUsersGuard implements CanActivate {
@@ -46,6 +47,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'dashboard', component: DashboardComponent },
       { path: 'inventory', component: InventoryComponent },
+      { path: 'trade', component: TradeComponent },
       { path: 'product', component: ProductComponent },
       { path: 'dealer', component: DealersComponent },
       { path: 'add-product', component: AddProductComponent },

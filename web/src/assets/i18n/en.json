@@ -9,7 +9,7 @@
       "LOGOUT": "Log Out"
     },
     "INVENTORY": {
-      "TITLE": "Inventory",
+      "TITLE": "Import Items",
       "AddTitle": "Add New Inventory Item",
       "Id": "Inventory Id"
     },
@@ -29,6 +29,7 @@
     "Remove": "Remove"
   },
   "Admin": "Admin",
+  "Amount": "Amount pending",
   "Back": "Back",
   "Brand": "MSB",
   "Close": "Close",
@@ -40,6 +41,7 @@
   "Email": "Email Id",
   "Email.Placeholder": "Ex. a@a.com",
   "Home": "Home",
+  "Id": "Id",
   "Inventory": "Inventory",
   "LastModified": "Last Modified",
   "Mobile": "Mobile Number",
@@ -51,7 +53,10 @@
   "Paid": "Amount Paid",
   "Product": "Product",
   "Quantity": "Quantity",
+  "Received": "Amount Received",
   "Submit": "Submit",
   "Timestamp": "Time",
-  "Total": "Total Amount"
+  "Total": "Total Amount",
+  "Trade": "Trade",
+  "TradeTransaction": "Trade Transaction"
 }
