@@ -9,14 +9,11 @@ export class UserService {
   constructor(private http: HttpClient) { }
   configUrl = 'http://localhost:8087/user';
 
-  /**
-   * Subject to store loggedin user info.
-   */
-  private loggedInUser = new Subject<User>();
   private loggedIn = false;
+  private user?: User;
 
-  getLoggedInUser(): Observable<any> {
-    return this.loggedInUser.asObservable();
+  getLoggedInUser(): User {
+    return this.user!;
   }
 
   login(user: User) {
@@ -24,11 +21,24 @@ export class UserService {
       .post<User>(this.configUrl + "/login", user);
   }
 
-  isLoggedIn(): boolean {
-   return this.loggedIn;
+  changePassword(user: any) {
+    user.username = this.user?.username;
+    user.password = user.oldPwd;
+    return this.http
+      .post<User>(this.configUrl + "/change", user);
   }
+
+  isLoggedIn(): boolean {
+    return this.loggedIn;
+  }
+
   LoggedIn(user: User): void {
     this.loggedIn = true;
-    this.loggedInUser.next(user);
+    this.user = user;
+  }
+
+  LogOut() {
+    this.loggedIn = false;
+    this.user = undefined;
   }
 }

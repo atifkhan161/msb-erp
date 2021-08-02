@@ -4,10 +4,7 @@
       "TITLE": "App works !",
       "GO_TO_DETAIL": "Go to Detail"
     },
-    "DASHBOARD": {
-      "TITLE": "Dashboard page!",
-      "LOGOUT": "Log Out"
-    },
+
     "INVENTORY": {
       "TITLE": "Import Items",
       "AddTitle": "Add New Inventory Item",
@@ -32,6 +29,7 @@
   "Amount": "Amount pending",
   "Back": "Back",
   "Brand": "MSB",
+  "ChangePassword": "Change Password",
   "Close": "Close",
   "Count": "Count",
   "Cost": "Cost",
@@ -44,6 +42,7 @@
   "Id": "Id",
   "Inventory": "Inventory",
   "LastModified": "Last Modified",
+  "Logout": "Log Out",
   "Mobile": "Mobile Number",
   "Mobile.Placeholder": "Ex. +91xxxxxxxxxx",
   "Name": "Name",

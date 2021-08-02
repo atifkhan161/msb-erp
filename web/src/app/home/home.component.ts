@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from 'rxjs';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { User } from '../model/user.model';
+import { ToastService } from '../service/toast-service';
+import { UserService } from '../service/user.service';
 
 @Component({
   selector: 'app-home',
@@ -7,19 +13,28 @@ import { Router } from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  message: string = 'static';
   _authenticated: boolean = false;
   _opened: boolean = true;
   _docked: boolean = true;
+  user?: User;
   constructor(
-    private router: Router,) { }
+    private router: Router,
+    private userService: UserService,
+    private toastService: ToastService,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
-    console.log('HomeComponent INIT');
-    this.getMessage();
+    this.user = this.userService.getLoggedInUser();
   }
 
-  getMessage(): void {
-    this.message = "updated!";
+  logOut() {
+    this.userService.LogOut();
+    this.router.navigate(["login"]);
+  }
+
+  changePassword() {
+  this.modalService.open(ChangePasswordComponent).result.then(() => {
+      this.toastService.success("Password changed successfully");
+    });
   }
 }
