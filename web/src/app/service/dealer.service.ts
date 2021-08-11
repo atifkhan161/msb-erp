@@ -24,7 +24,16 @@ export class DealerService {
       .get<Dealer[]>(this.configUrl);
   }
 
+  GetById(Id: number) {
+    return this.http
+      .get<Dealer>(this.configUrl + "/" + Id);
+  }
+
   Delete(dealer: Dealer) {
     return this.http.post<Dealer>(this.configUrl + "/delete", dealer);
+  }
+
+  Pay(dealer: Dealer) {
+    return this.http.put<Dealer>(this.configUrl + "/pay", dealer);
   }
 }

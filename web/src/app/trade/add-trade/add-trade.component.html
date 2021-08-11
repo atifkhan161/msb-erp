@@ -22,7 +22,7 @@
                 <th scope="col">{{ 'Product' | translate}}</th>
                 <th scope="col">{{ 'Quantity' | translate}}</th>
                 <th scope="col">{{ 'Cost' | translate}}</th>
-                <th scope="col"></th>
+                <th scope="col" *ngIf="!isEditMode"></th>
               </tr>
             </thead>
             <tbody>
@@ -40,7 +40,7 @@
                   <td>
                     <input type="number" class="form-control" id="received" formControlName="cost">
                   </td>
-                  <td>
+                  <td *ngIf="!isEditMode">
                     <i-bs name="journal-plus" (click)="createItem(i)">
                     </i-bs>
                     <i-bs name="trash" class="ml-3" (click)="removeItem(i)">
@@ -80,7 +80,7 @@
     </fieldset>
   </div>
   <div class="modal-footer">
-    <button type="submit" class="btn btn-primary" [disabled]="isEditMode || !tradeForm.valid">{{"Submit" | translate }}</button>
+    <button type="submit" class="btn btn-primary" [disabled]="!tradeForm.valid" *ngIf="!isEditMode">{{"Submit" | translate }}</button>
     <button type="button" class="btn btn-outline-dark"
       (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
   </div>

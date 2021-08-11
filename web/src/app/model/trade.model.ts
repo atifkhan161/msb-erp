@@ -4,7 +4,8 @@ export interface Transaction {
   cost: number;
   product_id: number;
   trade_id?: number;
-  timestamp?: Date;
+  timestamp: Date;
+  name?: string;
 }
 
 export interface Trade {
@@ -13,7 +14,7 @@ export interface Trade {
   total: number;
   amount: number;
   Dealer_Name?: string;
-  timestamp?: Date;
+  timestamp: Date;
   transactions: Transaction[];
   date?: any;
   time?: any;

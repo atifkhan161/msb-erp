@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { ConfirmModel, ConfirmModelComponent } from '../components/confirm-model/confirm-model.component';
 import { Trade } from '../model/trade.model';
 import { InventoryService } from '../service/inventory-service';
 import { ToastService } from '../service/toast-service';
@@ -50,9 +51,19 @@ export class InventoryComponent implements OnInit {
   }
 
   delete(item: Trade) {
-    this.service.Delete(item).subscribe(() => {
-      this.toastService.info("Inventory deleted successfully");
-      this.fetchList();
+    let modelRef = this.modalService.open(ConfirmModelComponent);
+    const data: ConfirmModel = {
+      title: "Remove Trade entry of" + item.Dealer_Name,
+      description: "Are you sure you want to remove Trade entry of customer " + item.Dealer_Name + " ?",
+    };
+    modelRef.componentInstance.data = data;
+    modelRef.result.then((resp) => {
+      if (resp) {
+        this.service.Delete(item).subscribe(() => {
+          this.toastService.info("Inventory deleted successfully");
+          this.fetchList();
+        });
+      }
     });
   }
 }

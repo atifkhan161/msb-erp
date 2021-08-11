@@ -1,0 +1,127 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'Invoice' | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body" >
+  <div class="page-content container" id="print-section">
+    <div class="page-header text-blue-d2">
+      <div class="container px-0">
+        <div class="row mt-1">
+          <div class="col-12 col-lg-10 offset-lg-1">
+            <div class="row">
+              <div class="col-12">
+                <div class="text-center text-150">
+                  <span class="text-default-d3 ml-1">MSB</span>
+                </div>
+              </div>
+            </div>
+
+            <hr class="row brc-default-l1 mx-n1 mb-4" />
+
+            <div class="row">
+              <div class="col-sm-6">
+                <div>
+                  <span class="text-sm text-grey-m2 align-middle">To:</span>
+                  <span class="text-600 text-110 text-blue align-middle ml-1">{{trade.Dealer_Name}}</span>
+                </div>
+                <div class="text-grey-m2" *ngIf="dealer$ | async as dealer">
+                  <div class="my-1">
+                    <i-bs name="envelope"></i-bs>
+                    <b class="text-600 ml-1">{{dealer.email}}</b>
+                  </div>
+                  <div class="my-1">
+                    <i-bs name="telephone"></i-bs>
+                    <b class="text-600 ml-1">{{dealer.number}}</b>
+                  </div>
+                </div>
+              </div>
+              <!-- /.col -->
+
+              <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                <hr class="d-sm-none" />
+                <div class="text-grey-m2">
+                  <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                    Invoice
+                  </div>
+
+                  <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90">ID:</span> #{{trade.trade_id}}</div>
+
+                  <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90">Issue Date:</span> {{trade.timestamp | date:'medium'}}</div>
+
+                  <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span
+                      class="text-600 text-90">Status:</span> <span class="badge badge-pill px-25 ml-1"
+                      [ngClass]="status === 'Paid' ? 'badge-success' : 'badge-warning'">{{status}}</span></div>
+                </div>
+              </div>
+              <!-- /.col -->
+            </div>
+
+            <div class="mt-4">
+              <div class="row text-600 text-white bgc-default-tp1 py-25">
+                <div class="d-none d-sm-block col-1">#</div>
+                <div class="col-9 col-sm-5">Product</div>
+                <div class="d-none d-sm-block col-4 col-sm-2">Quatity</div>
+                <div class="col-2">Price</div>
+              </div>
+
+              <div class="text-95 text-secondary-d3" *ngFor="let transaction of trade.transactions; let index = index">
+                <div class="row mb-2 mb-sm-0 py-25" [ngClass]="{'bgc-default-l4': 1 === index % 2}">
+                  <div class="d-none d-sm-block col-1">{{index}}</div>
+                  <div class="col-9 col-sm-5">{{transaction.name}}</div>
+                  <div class="d-none d-sm-block col-2">{{transaction.quantity}}</div>
+                  <div class="col-2 text-secondary-d2">&#8377;{{transaction.cost}}</div>
+                </div>
+              </div>
+
+              <div class="row border-b-2 brc-default-l2"></div>
+
+              <div class="row mt-3">
+                <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                </div>
+                <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                  <div class="row my-2">
+                    <div class="col-7 text-right">
+                      Amount Paid
+                    </div>
+                    <div class="col-5">
+                      <span class="text-120 text-secondary-d1">&#8377;{{trade.amount}}</span>
+                    </div>
+                  </div>
+
+                  <!-- <div class="row my-2">
+                    <div class="col-7 text-right">
+                      Tax (10%)
+                    </div>
+                    <div class="col-5">
+                      <span class="text-110 text-secondary-d1">$225</span>
+                    </div>
+                  </div> -->
+
+                  <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                    <div class="col-7 text-right">
+                      Total Amount
+                    </div>
+                    <div class="col-5">
+                      <span class="text-150 text-success-d3 opacity-2">&#8377;{{trade.total}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" [useExistingCss]="true" printSectionId="print-section"
+      ngxPrint>{{"Print" | translate }}</button>
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">
+      {{"Close" | translate }}
+    </button>
+  </div>
+</div>

@@ -1,11 +1,12 @@
 const bSqlite = require('better-sqlite3');
-
+const path = require('path');
 class DbService {
   constructor(next) {
     this.next = next;
   }
 
   async openDB() {
+    // this.db = new bSqlite('/Users/atif.khan/Software/msb-erp/app.db', { verbose: console.log });
     this.db = new bSqlite('./db/app.db', { verbose: console.log });
   }
 

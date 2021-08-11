@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ 'PAGES.Dealer.AddTitle' | translate }}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<form [formGroup]="payForm" (ngSubmit)="onSubmit()">
+  <div class="modal-body">
+    <fieldset>
+      <label class="form-label" for="id">{{'PAGES.Dealer.Id' | translate}}</label>
+      <input class="form-control" id="id" type="text" formControlName="dealer_id">
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="name" class="form-label">{{"Name" | translate }}</label>
+        <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
+          placeholder="{{'Name.Placeholder' | translate }}" formControlName="name">
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="name" class="form-label">{{"Amount" | translate }}</label>
+        <input type="text" class="form-control" id="amount" formControlName="amount">
+      </div>
+    </fieldset>
+    <fieldset>
+      <div class="form-group">
+        <label for="paying" class="form-label">{{"Paying" | translate }}</label>
+        <input type="number" class="form-control" id="paying" formControlName="paying">
+      </div>
+    </fieldset>
+
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-primary" [disabled]="!payForm.valid">{{"Submit" | translate }}</button>
+    <button type="button" class="btn btn-outline-dark"
+      (click)="activeModal.close('Close click')">{{"Close" | translate }}</button>
+  </div>
+</form>

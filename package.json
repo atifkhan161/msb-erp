@@ -1,0 +1,82 @@
+{
+  "name": "msb-erp",
+  "version": "1.0.0",
+  "description": "ERP for MSB",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/atifkhan161/msb-erp.git"
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "atifkhan161@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/atifkhan161/msb-erp/issues"
+  },
+  "homepage": "https://github.com/atifkhan161/msb-erp#readme",
+  "dependencies": {
+    "better-sqlite3": "^7.4.1",
+    "cors": "^2.8.5",
+    "electron-squirrel-startup": "^1.0.0",
+    "express": "^4.17.1",
+    "method-override": "^3.0.0",
+    "nodemon": "^2.0.12",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "@electron-forge/cli": "^6.0.0-beta.59",
+    "@electron-forge/maker-deb": "^6.0.0-beta.59",
+    "@electron-forge/maker-rpm": "^6.0.0-beta.59",
+    "@electron-forge/maker-squirrel": "^6.0.0-beta.59",
+    "@electron-forge/maker-wix": "^6.0.0-beta.59",
+    "@electron-forge/maker-zip": "^6.0.0-beta.59",
+    "electron": "^13.1.8"
+  },
+  "config": {
+    "forge": {
+      "packagerConfig": {
+        "ignore": [
+          "web/",
+          "server/node_modules/"
+        ]
+      },
+      "makers": [
+        {
+          "name": "@electron-forge/maker-squirrel",
+          "config": {
+            "name": "msb_erp"
+          }
+        },
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin"
+          ]
+        },
+        {
+          "name": "@electron-forge/maker-deb",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-rpm",
+          "config": {}
+        },
+        {
+          "name": "@electron-forge/maker-wix",
+          "config": {
+            "language": 1033,
+            "manufacturer": "MSB"
+          }
+        }
+      ]
+    }
+  }
+}

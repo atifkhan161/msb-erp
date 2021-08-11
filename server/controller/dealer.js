@@ -19,6 +19,14 @@ router.get('/dealer', async (req, res, next) => {
   }
 });
 
+router.get('/dealer/:id', async (req, res, next) => {
+  let service = new DealerService(next);
+  const info = await service.getDealerById(req.params.id);
+  if (info) {
+    res.send(info);
+  }
+});
+
 router.post('/dealer/delete', async (req, res, next) => {
   let service = new DealerService(next);
   const info = await service.deleteDealer(req.body);
@@ -27,9 +35,11 @@ router.post('/dealer/delete', async (req, res, next) => {
   }
 });
 
-router.put('/dealer/', async (req, res, next) => {
+router.put('/dealer/pay', async (req, res, next) => {
   let service = new DealerService(next);
-  const info = await service.editDealer(req.body);
+  let item = req.body;
+  let amount = item.amount - item.paying;
+  const info = await service.updateDealerAmount(item.dealer_id, amount, Date.now());
   if (info) {
     res.send(info);
   }

@@ -37,8 +37,8 @@ export class AddInventoryComponent implements OnInit {
           disabled: true
         }),
       total: new FormControl({ value: 0, disabled: true }),
-      amount: new FormControl(0),
-      dealer_id: new FormControl(null, Validators.required),
+      amount: new FormControl({ value: 0, disabled: this.isEditMode }),
+      dealer_id: new FormControl({ value: null, disabled: this.isEditMode }, Validators.required),
       date: new FormControl(this.getDateStruct(Date.now())),
       time: new FormControl(this.getTimeStruct(Date.now())),
       transactions: this.transactions
@@ -47,9 +47,9 @@ export class AddInventoryComponent implements OnInit {
       this.inventoryForm.patchValue(this.inventory);
       for (let transaction of this.inventory.transactions) {
         this.transactions.push(new FormGroup({
-          product_id: new FormControl(transaction.product_id, Validators.required),
-          quantity: new FormControl(transaction.quantity),
-          cost: new FormControl(transaction.cost)
+          product_id: new FormControl({ value: transaction.product_id, disabled: true }),
+          quantity: new FormControl({ value: transaction.quantity, disabled: true }),
+          cost: new FormControl({ value: transaction.cost, disabled: true })
         }));
       }
       this.inventoryForm.updateValueAndValidity();

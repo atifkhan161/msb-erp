@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
+
+import { ConfirmModel, ConfirmModelComponent } from '../components/confirm-model/confirm-model.component';
 import { Product } from '../model/product.model';
 import { ProductService } from '../service/product.service';
 import { ToastService } from '../service/toast-service';
@@ -29,7 +30,7 @@ export class ProductComponent implements OnInit {
     });
   }
   addProduct() {
-    this.modalService.open(AddProductComponent).result.then(()=>{
+    this.modalService.open(AddProductComponent).result.then(() => {
       this.toastService.success("Dealer added successfully");
       this.fetchList();
     });
@@ -39,16 +40,26 @@ export class ProductComponent implements OnInit {
     let modelRef = this.modalService.open(AddProductComponent);
     modelRef.componentInstance.isEditMode = true;
     modelRef.componentInstance.product = item;
-    modelRef.result.then(()=>{
+    modelRef.result.then(() => {
       this.toastService.info("Product updated.");
       this.fetchList();
     });
   }
 
   delete(item: Product) {
-    this.service.Delete(item).subscribe((item) => {
-      this.toastService.info("Product deleted successfully");
-      this.fetchList();
+    let modelRef = this.modalService.open(ConfirmModelComponent);
+    const data: ConfirmModel = {
+      title: "Remove " + item.name,
+      description: "Are you sure you want to delete " + item.name + " ?"
+    };
+    modelRef.componentInstance.data = data;
+    modelRef.result.then((resp) => {
+      if (resp) {
+        this.service.Delete(item).subscribe((item) => {
+          this.toastService.info("Product deleted successfully");
+          this.fetchList();
+        });
+      }
     });
   }
 }
