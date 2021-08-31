@@ -1,9 +1,15 @@
+/*jshint strict:false */
+
 (function (appPath) {
   const express = require('express');
   const app = express();
-  const port = 8087;
   var cors = require("cors");
   var methodOverride = require('method-override');
+  const path = require('path');
+  const config = require('./config');
+  const port = config.app.port || 8087;
+
+  // const open = require('open');
 
   // API files
   const user = require("./controller/user");
@@ -25,11 +31,28 @@
   app.use(inventory);
   app.use(trade);
 
+  // Web views
+  app.use('/', express.static(getDir() + '/static'));
+  app.use(redirectUnmatched);
+
   app.use(methodOverride());
   app.use(clientErrorHandler);
   app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
+    console.log(`Example app listening at http://localhost:${port}`);
+    // require("openurl").open(`http://localhost:${port}`);
   });
 
+  function redirectUnmatched(req, res) {
+    res.redirect("/");
+  }
+
+  // Using a function to set default app path
+  function getDir() {
+    if (process.pkg) {
+      return path.resolve(process.execPath + "/..");
+    } else {
+      return path.join(require.main ? require.main.path : process.cwd());
+    }
+  }
   module.exports = app;
 }());

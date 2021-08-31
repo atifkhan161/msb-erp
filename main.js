@@ -1,9 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const url = require("url");
 const path = require('path');
-const session = require('express-session');
-
-const appPath = app.getPath('userData');
 
 const server = require('./server/index');
 

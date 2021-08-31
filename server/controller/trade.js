@@ -13,7 +13,7 @@ router.post('/trade', async (req, res, next) => {
 
 router.get('/trade', async (req, res, next) => {
   let service = new TradeService(next);
-  const info = await service.getAll();
+  const info = await service.getAll(req.query.limit);
   if (info) {
     res.send(info);
   }

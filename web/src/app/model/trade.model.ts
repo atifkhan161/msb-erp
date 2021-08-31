@@ -1,3 +1,5 @@
+import { Base } from "./loki.common";
+
 export interface Transaction {
   transaction_id?: number;
   quantity: number;
@@ -8,7 +10,7 @@ export interface Transaction {
   name?: string;
 }
 
-export interface Trade {
+export interface Trade  extends Base {
   trade_id?: number;
   dealer_id: number;
   total: number;

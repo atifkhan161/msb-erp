@@ -23,10 +23,10 @@ export class DashboardComponent implements OnInit {
   }
 
   fetchList() {
-    this.inventoryService.Get().subscribe(list => {
+    this.inventoryService.Get({limit: 50}).subscribe(list => {
       this.inventories = list;
     });
-    this.tradeService.Get().subscribe(list => {
+    this.tradeService.Get({limit: 50}).subscribe(list => {
       this.tradeList = list;
     });
   }

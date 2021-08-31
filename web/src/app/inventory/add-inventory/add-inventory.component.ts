@@ -75,7 +75,8 @@ export class AddInventoryComponent implements OnInit {
         for (let transaction of formValue) {
           total += transaction.cost;
           this.inventoryForm.patchValue({
-            total: total
+            total: total,
+            amount: total
           });
           this.inventoryForm.updateValueAndValidity();
         }

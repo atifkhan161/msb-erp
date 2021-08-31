@@ -21,9 +21,9 @@ export class TradeService {
       .put<Trade>(this.configUrl, trade);
   }
 
-  Get() {
+  Get(data?: any) {
     return this.http
-      .get<Trade[]>(this.configUrl);
+      .get<Trade[]>(this.configUrl, { params: data });
   }
 
   GetTransactions(id?: number) {

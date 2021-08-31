@@ -27,6 +27,11 @@ export class BillComponent implements OnInit {
   }
 
   get status(): string {
-    return ((this.trade.total - this.trade.amount) === 0 ? 'Paid' : 'Pending');
+    let status = 'Pending';
+    if (this.trade.total === 0 ||
+      (this.trade.total - this.trade.amount) === 0) {
+      status = 'Paid';
+    }
+    return status;
   }
 }

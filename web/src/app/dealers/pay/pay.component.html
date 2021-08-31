@@ -29,7 +29,23 @@
         <input type="number" class="form-control" id="paying" formControlName="paying">
       </div>
     </fieldset>
-
+    <div class="d-flex">
+      <div class="form-group form-check-inline">
+        <label for="date" class="sr-only">{{"Date" | translate }}</label>
+        <div class="input-group">
+          <input class="form-control mr-2" placeholder="yyyy-mm-dd" id="date" name="date" formControlName="date"
+            ngbDatepicker #d="ngbDatepicker">
+          <div class="input-group-append form-check-inline">
+            <i-bs name="calendar-date" width="1rem" (click)="d.toggle()" height="1rem">
+            </i-bs>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="time" class="sr-only">{{"Timestamp" | translate }}</label>
+        <ngb-timepicker id="time" formControlName="time" [meridian]="true"></ngb-timepicker>
+      </div>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="submit" class="btn btn-primary" [disabled]="!payForm.valid">{{"Submit" | translate }}</button>

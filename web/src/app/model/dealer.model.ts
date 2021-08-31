@@ -1,4 +1,6 @@
-export interface Dealer {
+import { Base } from "./loki.common";
+
+export interface Dealer  extends Base {
   dealer_id?: number;
   name: string;
   number?: number;

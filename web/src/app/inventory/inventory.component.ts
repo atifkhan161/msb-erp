@@ -31,23 +31,27 @@ export class InventoryComponent implements OnInit {
   }
 
   addInventory() {
-    this.modalService.open(AddInventoryComponent, { size: 'lg' }).result.then(() => {
-      this.toastService.success("Inventory added successfully");
-      this.fetchList();
+    this.modalService.open(AddInventoryComponent, { size: 'lg' }).result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.success("Inventory added successfully");
+        this.fetchList();
+      }
     });
   }
 
   editInventory(item: Trade) {
-    this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
-      item.transactions = transactions;
-      let modelRef = this.modalService.open(AddInventoryComponent, { size: 'lg' });
-      modelRef.componentInstance.isEditMode = true;
-      modelRef.componentInstance.inventory = item;
-      modelRef.result.then(() => {
+    // this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
+    //   item.transactions = transactions;
+    let modelRef = this.modalService.open(AddInventoryComponent, { size: 'lg' });
+    modelRef.componentInstance.isEditMode = true;
+    modelRef.componentInstance.inventory = item;
+    modelRef.result.then((resp) => {
+      if (resp != "Close click") {
         this.toastService.info("Inventory updated.");
         this.fetchList();
-      });
+      }
     });
+    // });
   }
 
   delete(item: Trade) {

@@ -3,18 +3,37 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "bin": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "cd server && nodemon index.js"
+    "debug": "cd server && nodemon index.js",
+    "build": "pkg index.js"
+  },
+  "pkg": {
+    "scripts": [],
+    "assets": [
+      "static/main.*.js",
+      "static/polyfills.*.js",
+      "static/runtime.*.js",
+      "static/assets/i18n/en.json",
+      "static/index.html",
+      "static/styles.*.css",
+      "./node_modules/sqlite3/lib/binding/napi-v3-darwin-x64/node_sqlite3.node"
+    ]
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "better-sqlite3": "^7.4.1",
+    "bindings": "^1.5.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "lokijs": "^1.5.12",
     "method-override": "^3.0.0",
     "nodemon": "^2.0.12",
+    "openurl": "^1.1.1",
+    "pkg": "^5.3.1",
     "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
   }
 }

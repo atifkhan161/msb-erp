@@ -13,7 +13,7 @@ router.post('/inventory', async (req, res, next) => {
 
 router.get('/inventory', async (req, res, next) => {
   let service = new InventoryService(next);
-  const info = await service.getAll();
+  const info = await service.getAll(req.query.limit);
   if (info) {
     res.send(info);
   }

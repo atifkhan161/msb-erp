@@ -75,7 +75,8 @@ export class AddTradeComponent implements OnInit {
         for (let transaction of formValue) {
           total += transaction.cost;
           this.tradeForm.patchValue({
-            total: total
+            total: total,
+            amount: total
           });
           this.tradeForm.updateValueAndValidity();
         }

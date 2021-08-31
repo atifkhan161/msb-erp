@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const DealerService = require("../service/dealer");
+const TradeService = require("../service/trade");
 
 // Get Dealer
 router.post('/dealer', async (req, res, next) => {
@@ -35,11 +36,18 @@ router.post('/dealer/delete', async (req, res, next) => {
   }
 });
 
-router.put('/dealer/pay', async (req, res, next) => {
+router.put('/dealer/', async (req, res, next) => {
   let service = new DealerService(next);
+  const info = await service.editDealer(req.body);
+  if (info) {
+    res.send(info);
+  }
+});
+
+router.put('/dealer/pay', async (req, res, next) => {
+  let service = new TradeService(next);
   let item = req.body;
-  let amount = item.amount - item.paying;
-  const info = await service.updateDealerAmount(item.dealer_id, amount, Date.now());
+  const info = await service.addPendingAmount(item);
   if (info) {
     res.send(info);
   }

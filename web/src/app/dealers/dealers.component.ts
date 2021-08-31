@@ -31,9 +31,11 @@ export class DealersComponent implements OnInit {
     });
   }
   addDealer() {
-    this.modalService.open(AddDealerComponent).result.then(() => {
-      this.toastService.success("Dealer added successfully");
-      this.fetchList();
+    this.modalService.open(AddDealerComponent).result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.success("Dealer added successfully");
+        this.fetchList();
+      }
     });
   }
 
@@ -41,9 +43,11 @@ export class DealersComponent implements OnInit {
     let modelRef = this.modalService.open(AddDealerComponent);
     modelRef.componentInstance.isEditMode = true;
     modelRef.componentInstance.dealer = item;
-    modelRef.result.then(() => {
-      this.toastService.info("Dealer updated.");
-      this.fetchList();
+    modelRef.result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.info("Dealer updated.");
+        this.fetchList();
+      }
     });
   }
 
@@ -67,9 +71,11 @@ export class DealersComponent implements OnInit {
   pay(item: Dealer) {
     let modelRef = this.modalService.open(PayComponent);
     modelRef.componentInstance.dealer = item;
-    modelRef.result.then(() => {
-      this.toastService.info("Dealer updated.");
-      this.fetchList();
+    modelRef.result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.info("Dealer updated.");
+        this.fetchList();
+      }
     });
   }
 }

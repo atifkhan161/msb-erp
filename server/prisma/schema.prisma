@@ -1,0 +1,55 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:/Users/atif.khan/workspace/msb-erp/server/db/app.db"
+}
+
+model dealer {
+  dealer_id Int      @id @default(autoincrement())
+  name      String   @unique
+  number    Int?
+  amount    Int      @default(0)
+  email     String?
+  notes     String?
+  timestamp DateTime @default(dbgenerated("datetime(CURRENT_TIMESTAMP, 'localtime')"))
+  trade     trade[]
+}
+
+model product {
+  product_id Int       @id @default(autoincrement())
+  name       String    @unique
+  inventory  Int       @default(0)
+  timestamp  DateTime  @default(dbgenerated("datetime(CURRENT_TIMESTAMP, 'localtime')"))
+  transac    transac[]
+}
+
+model trade {
+  trade_id  Int       @id @default(autoincrement())
+  total     Int       @default(0)
+  amount    Int       @default(0)
+  dealer_id Int       @default(0)
+  timestamp DateTime  @default(dbgenerated("datetime(CURRENT_TIMESTAMP, 'localtime')"))
+  type      String    @default("Sell")
+  dealer    dealer    @relation(fields: [dealer_id], references: [dealer_id])
+  transac   transac[]
+}
+
+model transac {
+  transaction_id Int      @id @default(autoincrement())
+  quantity       Int      @default(0)
+  cost           Int      @default(0)
+  product_id     Int      @default(0)
+  trade_id       Int      @default(0)
+  timestamp      DateTime @default(dbgenerated("datetime(CURRENT_TIMESTAMP, 'localtime')"))
+  product        product  @relation(fields: [product_id], references: [product_id])
+  trade          trade    @relation(fields: [trade_id], references: [trade_id])
+}
+
+model user {
+  user_id  Int    @id @default(autoincrement())
+  username String @unique
+  password String
+}

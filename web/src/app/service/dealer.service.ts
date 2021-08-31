@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Dealer } from '../model/dealer.model';
+import { Trade } from '../model/trade.model';
 
 @Injectable({ providedIn: 'root' })
 export class DealerService {
@@ -33,7 +34,7 @@ export class DealerService {
     return this.http.post<Dealer>(this.configUrl + "/delete", dealer);
   }
 
-  Pay(dealer: Dealer) {
-    return this.http.put<Dealer>(this.configUrl + "/pay", dealer);
+  Pay(trade: Trade) {
+    return this.http.put<Dealer>(this.configUrl + "/pay", trade);
   }
 }

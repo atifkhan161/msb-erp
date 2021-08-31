@@ -32,22 +32,23 @@ export class TradeComponent implements OnInit {
   }
 
   add() {
-    this.modalService.open(AddTradeComponent, { size: 'lg' }).result.then(() => {
-      this.toastService.success("Dealing added successfully");
-      this.fetchList();
+    this.modalService.open(AddTradeComponent, { size: 'lg' }).result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.success("Dealing added successfully");
+        this.fetchList();
+      }
     });
   }
 
   edit(item: Trade) {
-    this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
-      item.transactions = transactions;
-      let modelRef = this.modalService.open(AddTradeComponent, { size: 'lg' });
-      modelRef.componentInstance.isEditMode = true;
-      modelRef.componentInstance.trade = item;
-      modelRef.result.then(() => {
+    let modelRef = this.modalService.open(AddTradeComponent, { size: 'lg' });
+    modelRef.componentInstance.isEditMode = true;
+    modelRef.componentInstance.trade = item;
+    modelRef.result.then((resp) => {
+      if (resp != "Close click") {
         this.toastService.info("Dealing updated.");
         this.fetchList();
-      });
+      }
     });
   }
 
@@ -70,14 +71,14 @@ export class TradeComponent implements OnInit {
   }
 
   print(item: Trade) {
-    this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
-      item.transactions = transactions;
-      let modelRef = this.modalService.open(BillComponent, { size: 'lg' });
-      modelRef.componentInstance.isEditMode = true;
-      modelRef.componentInstance.trade = item;
-      modelRef.result.then(() => {
-      });
+    // this.service.GetTransactions(item.trade_id).subscribe((transactions) => {
+    //   item.transactions = transactions;
+    let modelRef = this.modalService.open(BillComponent, { size: 'lg' });
+    modelRef.componentInstance.isEditMode = true;
+    modelRef.componentInstance.trade = item;
+    modelRef.result.then(() => {
     });
+    // });
   }
 
 }

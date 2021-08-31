@@ -30,9 +30,11 @@ export class ProductComponent implements OnInit {
     });
   }
   addProduct() {
-    this.modalService.open(AddProductComponent).result.then(() => {
-      this.toastService.success("Dealer added successfully");
-      this.fetchList();
+    this.modalService.open(AddProductComponent).result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.success("Dealer added successfully");
+        this.fetchList();
+      }
     });
   }
 
@@ -40,9 +42,11 @@ export class ProductComponent implements OnInit {
     let modelRef = this.modalService.open(AddProductComponent);
     modelRef.componentInstance.isEditMode = true;
     modelRef.componentInstance.product = item;
-    modelRef.result.then(() => {
-      this.toastService.info("Product updated.");
-      this.fetchList();
+    modelRef.result.then((resp) => {
+      if (resp != "Close click") {
+        this.toastService.info("Product updated.");
+        this.fetchList();
+      }
     });
   }
 
