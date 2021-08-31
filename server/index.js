@@ -39,7 +39,7 @@
   app.use(clientErrorHandler);
   app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
-    // require("openurl").open(`http://localhost:${port}`);
+    require("openurl").open(`http://localhost:${port}`);
   });
 
   function redirectUnmatched(req, res) {
