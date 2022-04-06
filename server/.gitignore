@@ -109,7 +109,7 @@ dist
 
 *.DS_Store*
 
-static/*
+# static/*
 
 index-*
 

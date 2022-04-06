@@ -1,0 +1,61 @@
+{
+  "PAGES": {
+    "HOME": {
+      "TITLE": "App works !",
+      "GO_TO_DETAIL": "Go to Detail"
+    },
+
+    "INVENTORY": {
+      "TITLE": "Import Items",
+      "AddTitle": "Add New Inventory Item",
+      "Id": "Inventory Id"
+    },
+    "Product": {
+      "TITLE": "Products",
+      "Id": "Product Id",
+      "Name": "Product Name",
+      "AddTitle": "Add a new Product"
+    },
+    "Dealer": {
+      "TITLE": "Dealers",
+      "Id": "Dealer Id",
+      "Name": "Name",
+      "AddTitle": "Add a new Dealer"
+    },
+    "Add": "Add",
+    "Remove": "Remove"
+  },
+  "Admin": "Admin",
+  "Amount": "Amount pending",
+  "Back": "Back",
+  "Brand": "MSB",
+  "ChangePassword": "Change Password",
+  "Close": "Close",
+  "Count": "Count",
+  "Cost": "Cost",
+  "Dashboard": "Dashboard",
+  "Date": "Date",
+  "Dealer": "Dealer",
+  "Email": "Email Id",
+  "Email.Placeholder": "Ex. a@a.com",
+  "Home": "Home",
+  "Id": "Id",
+  "Inventory": "Inventory",
+  "LastModified": "Last Modified",
+  "Logout": "Log Out",
+  "Mobile": "Mobile Number",
+  "Mobile.Placeholder": "Ex. +91xxxxxxxxxx",
+  "Name": "Name",
+  "Name.Placeholder": "Enter Name",
+  "Notes": "Notes",
+  "PayAmount": "Amount to pay",
+  "Paid": "Amount Paid",
+  "Product": "Product",
+  "Quantity": "Quantity",
+  "Received": "Amount Received",
+  "Submit": "Submit",
+  "Timestamp": "Time",
+  "Total": "Total Amount",
+  "Trade": "Trade",
+  "TradeTransaction": "Trade Transaction"
+}
